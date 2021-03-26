@@ -23,7 +23,7 @@ if(NOT stationaryorbit.core_FOUND)
             dependencies
             ..
         PATH_SUFFIXES
-            stationaryorbit-core
+            stationaryorbit.core
     )
     if(EXISTS "${stationaryorbit_core}/cmake/Findstationaryorbit.core.cmake")
         message("found Findstationaryorbit.core.cmake in ${stationaryorbit_core}/cmake")
