@@ -29,16 +29,16 @@ set(CMAKE_CXX_STANDARD_REQUIRED true)
 if(TARGET stationaryorbit.core)
     message("found stationaryorbit.core in parent project")
     set(stationaryorbit_core_MODULE_NAME stationaryorbit.core)
-elseif(EXISTS "dependencies/stationaryorbit-core/CMakeLists.txt")
+elseif(EXISTS "dependencies/stationaryorbit.core/CMakeLists.txt")
     message("found stationaryorbit.core in dependencies directory")
-    add_subdirectory("dependencies/stationaryorbit-core")
+    add_subdirectory("dependencies/stationaryorbit.core")
     set(stationaryorbit_core_MODULE_NAME stationaryorbit.core)
 else()
     find_path(stationaryorbit_core cmake/Findstationaryorbit.core.cmake
         PATHS
             ..
         PATH_SUFFIXES
-            stationaryorbit-core
+            stationaryorbit.core
     )
     if(EXISTS "${stationaryorbit_core}/cmake/Findstationaryorbit.core.cmake")
         message("found Findstationaryorbit.core.cmake in ${stationaryorbit_core}/cmake")
