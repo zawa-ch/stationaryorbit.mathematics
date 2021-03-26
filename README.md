@@ -19,14 +19,14 @@ stationaryorbit.mathematics は数値計算などの応用数学をサポート�
 - 集合(CrispSet)
 - ファジィ集合(FuzzySet)
 
+## 依存
+
+- stationaryorbit.core
+
 ## ライセンス
 
 このライブラリは、GNU一般公衆ライセンス v3.0(GPLv3)、またはそれ以降のライセンスで提供されます。  
 ライセンスに関する詳細は[LISENCE](./LICENSE)ファイル、または[ライセンス - GNUプロジェクト](http://www.gnu.org/licenses/)のページをご確認ください。  
-
-また、コミット`e4fa05c54a6d7b77884d64b787423cbdf678bde1`以前はGNU劣等一般公衆ライセンス v3.0(LGPLv3)、またはそれ以降で提供されていました。  
-それらのコードは引き続きLGPLv3(or later)で提供されます。  
-当該コミットのLICENSEファイルを確認することでライセンス条文を確認することができます。  
 
 ## 注意: 開発中のリポジトリ
 
