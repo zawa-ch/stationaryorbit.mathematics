@@ -24,7 +24,3 @@ add_executable(stationaryorbit.mathematics.test
     taylorseries.cpp
     test-mathematics.cpp
 )
-target_link_libraries(stationaryorbit.mathematics.test
-    ${stationaryorbit_core_MODULE_NAME}
-    stationaryorbit.mathematics
-)
