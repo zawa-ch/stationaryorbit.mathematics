@@ -2,6 +2,9 @@
 
 [stationaryorbit](https://github.com/zawa-ch/stationaryorbit) » mathematics
 
+![Lisence](https://img.shields.io/github/license/zawa-ch/stationaryorbit.mathematics)
+![Lines of code](https://img.shields.io/tokei/lines/github/zawa-ch/stationaryorbit.mathematics)
+
 簡単なことを簡単に行うためのライブラリ
 
 ## 概要
