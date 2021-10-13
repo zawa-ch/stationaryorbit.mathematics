@@ -53,7 +53,7 @@ namespace zawa_ch::StationaryOrbit::Mathematics
 			if constexpr (std::numeric_limits<T>::is_exact)
 			{
 				auto numvalue = T();
-				for(auto i: Range<size_t>(0, num.size()).GetStdReverseIterator())
+				for(auto i: Range<size_t>(0, num.size()).get_std_reverse_iterator())
 				{
 					numvalue += num[i];
 					numvalue *= value;
@@ -64,7 +64,7 @@ namespace zawa_ch::StationaryOrbit::Mathematics
 			else
 			{
 				auto numvalue = CompensatedFloat<T>();
-				for(auto i: Range<size_t>(0, num.size()).GetStdReverseIterator())
+				for(auto i: Range<size_t>(0, num.size()).get_std_reverse_iterator())
 				{
 					numvalue += num[i];
 					numvalue *= value;
