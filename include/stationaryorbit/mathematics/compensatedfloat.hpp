@@ -21,7 +21,10 @@
 #include "stationaryorbit/core.traits.hpp"
 namespace zawa_ch::StationaryOrbit::Mathematics
 {
-	/// 計算時に誤差の補償が行われる数値を表します。
+	///	@brief	計算時に誤差の補償が行われる数値を表します
+	///
+	///	加減算時に発生する桁落ち誤差を補償する数値型を表します。
+	///
 	///	@note
 	///	正確な値を示す( @a std::numeric_limits<Tp>::is_exact が @a true である)型に対しては、この型を実体化するべきではありません。
 	///	CompensatedFloat は加減算の際に発生する桁落ちによる誤差を補償するための型であり、桁落ちの発生しない型に対して使用する必要はないからです。
