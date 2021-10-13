@@ -25,60 +25,60 @@ namespace zawa_ch::StationaryOrbit::Mathematics
 	///	@note
 	///	正確な値を示す( @a std::numeric_limits<Tp>::is_exact が @a true である)型に対しては、この型を実体化するべきではありません。
 	///	CompensatedFloat は加減算の際に発生する桁落ちによる誤差を補償するための型であり、桁落ちの発生しない型に対して使用する必要はないからです。
-	template<class T>
+	template<class Tp>
 	struct CompensatedFloat final
 	{
 		static_assert(NumericalTypeTraits::is_numericaltype<Tp>, "テンプレート引数 Tp は数値型である必要があります。");
 	public:
-		typedef T ValueType;
+		typedef Tp ValueType;
 	private:
 		///	このオブジェクトの値
-		T value;
+		Tp value;
 		///	計算時に発生した誤差
-		T c;
+		Tp c;
 	public:
 		///	オブジェクトを既定の値で初期化します。
 		CompensatedFloat() = default;
 		///	指定された値でオブジェクトを初期化します。
-		explicit constexpr CompensatedFloat(const T& value) : value(value), c() {}
+		explicit constexpr CompensatedFloat(const Tp& value) : value(value), c() {}
 	private:
 		///	値からこのオブジェクトを直接構築します。
-		constexpr CompensatedFloat(const T& value, const T& c) : value(value), c(c) {}
+		constexpr CompensatedFloat(const Tp& value, const Tp& c) : value(value), c(c) {}
 	public:
 		///	このオブジェクトが指す値を取得します。
 		constexpr ValueType Value() const noexcept { return value; }
 		///	このオブジェクトの計算時に用いられる誤差の値を取得します。
 		constexpr ValueType Error() const noexcept { return c; }
 
-		[[nodiscard]] constexpr CompensatedFloat<T> operator+() const noexcept { return CompensatedFloat<T>(*this); }
-		[[nodiscard]] constexpr CompensatedFloat<T> operator-() const noexcept { return CompensatedFloat<T>(-value, -c); }
-		[[nodiscard]] constexpr CompensatedFloat<T> operator+(const T& other) const noexcept
+		[[nodiscard]] constexpr CompensatedFloat<Tp> operator+() const noexcept { return CompensatedFloat<Tp>(*this); }
+		[[nodiscard]] constexpr CompensatedFloat<Tp> operator-() const noexcept { return CompensatedFloat<Tp>(-value, -c); }
+		[[nodiscard]] constexpr CompensatedFloat<Tp> operator+(const Tp& other) const noexcept
 		{
 			ValueType comp = other - c;
 			ValueType sum = value + comp;
-			return CompensatedFloat<T>(sum, (sum - value) - comp);
+			return CompensatedFloat<Tp>(sum, (sum - value) - comp);
 		}
-		[[nodiscard]] constexpr CompensatedFloat<T> operator-(const T& other) const noexcept
+		[[nodiscard]] constexpr CompensatedFloat<Tp> operator-(const Tp& other) const noexcept
 		{
 			ValueType comp = other + c;
 			ValueType sum = value - comp;
-			return CompensatedFloat<T>(sum, (sum - value) + comp);
+			return CompensatedFloat<Tp>(sum, (sum - value) + comp);
 		}
-		[[nodiscard]] constexpr CompensatedFloat<T> operator*(const T& other) const noexcept { return CompensatedFloat<T>(value * other, c * other); }
-		[[nodiscard]] constexpr CompensatedFloat<T> operator/(const T& other) const noexcept { return CompensatedFloat<T>(value / other, c / other); }
-		constexpr CompensatedFloat<T>& operator+=(const T& other) noexcept { return *this = *this + other; }
-		constexpr CompensatedFloat<T>& operator-=(const T& other) noexcept { return *this = *this - other; }
-		constexpr CompensatedFloat<T>& operator*=(const T& other) noexcept { return *this = *this * other; }
-		constexpr CompensatedFloat<T>& operator/=(const T& other) noexcept { return *this = *this / other; }
+		[[nodiscard]] constexpr CompensatedFloat<Tp> operator*(const Tp& other) const noexcept { return CompensatedFloat<Tp>(value * other, c * other); }
+		[[nodiscard]] constexpr CompensatedFloat<Tp> operator/(const Tp& other) const noexcept { return CompensatedFloat<Tp>(value / other, c / other); }
+		constexpr CompensatedFloat<Tp>& operator+=(const Tp& other) noexcept { return *this = *this + other; }
+		constexpr CompensatedFloat<Tp>& operator-=(const Tp& other) noexcept { return *this = *this - other; }
+		constexpr CompensatedFloat<Tp>& operator*=(const Tp& other) noexcept { return *this = *this * other; }
+		constexpr CompensatedFloat<Tp>& operator/=(const Tp& other) noexcept { return *this = *this / other; }
 
-		[[nodiscard]] constexpr bool Equals(const CompensatedFloat<T>& other) const noexcept { return T(*this) == T(other); }
-		[[nodiscard]] constexpr bool operator==(const CompensatedFloat<T>& other) const noexcept { return Equals(other); }
-		[[nodiscard]] constexpr bool operator!=(const CompensatedFloat<T>& other) const noexcept { return !Equals(other); }
+		[[nodiscard]] constexpr bool Equals(const CompensatedFloat<Tp>& other) const noexcept { return Tp(*this) == Tp(other); }
+		[[nodiscard]] constexpr bool operator==(const CompensatedFloat<Tp>& other) const noexcept { return Equals(other); }
+		[[nodiscard]] constexpr bool operator!=(const CompensatedFloat<Tp>& other) const noexcept { return !Equals(other); }
 
-		[[nodiscard]] constexpr bool operator<(const CompensatedFloat<T>& other) const noexcept { return T(*this) < T(other); }
-		[[nodiscard]] constexpr bool operator>(const CompensatedFloat<T>& other) const noexcept { return T(*this) > T(other); }
-		[[nodiscard]] constexpr bool operator<=(const CompensatedFloat<T>& other) const noexcept { return T(*this) <= T(other); }
-		[[nodiscard]] constexpr bool operator>=(const CompensatedFloat<T>& other) const noexcept { return T(*this) >= T(other); }
+		[[nodiscard]] constexpr bool operator<(const CompensatedFloat<Tp>& other) const noexcept { return Tp(*this) < Tp(other); }
+		[[nodiscard]] constexpr bool operator>(const CompensatedFloat<Tp>& other) const noexcept { return Tp(*this) > Tp(other); }
+		[[nodiscard]] constexpr bool operator<=(const CompensatedFloat<Tp>& other) const noexcept { return Tp(*this) <= Tp(other); }
+		[[nodiscard]] constexpr bool operator>=(const CompensatedFloat<Tp>& other) const noexcept { return Tp(*this) >= Tp(other); }
 
 		explicit constexpr operator ValueType() const { return value - c; }
 	};
