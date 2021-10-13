@@ -23,12 +23,12 @@ namespace zawa_ch::StationaryOrbit::Mathematics
 {
 	/// 計算時に誤差の補償が行われる数値を表します。
 	///	@note
-	///	正確な値を示す( @a std::numeric_limits<T>::is_exact が @a true である)型に対してはこの型を実体化することはできません。
+	///	正確な値を示す( @a std::numeric_limits<Tp>::is_exact が @a true である)型に対しては、この型を実体化するべきではありません。
+	///	CompensatedFloat は加減算の際に発生する桁落ちによる誤差を補償するための型であり、桁落ちの発生しない型に対して使用する必要はないからです。
 	template<class T>
 	struct CompensatedFloat final
 	{
 		static_assert(NumericalTypeTraits::is_numericaltype<Tp>, "テンプレート引数 Tp は数値型である必要があります。");
-		static_assert(!std::numeric_limits<T>::is_exact, "テンプレート引数 T が正確な値を示す型であってはなりません。");
 	public:
 		typedef T ValueType;
 	private:
