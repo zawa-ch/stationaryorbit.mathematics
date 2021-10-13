@@ -29,15 +29,15 @@ void NewtonCoef::Complete()
     }
 }
 
-NewtonCoef::NewtonCoef(const std::vector<Vector2d>& list)
+NewtonCoef::NewtonCoef(const std::vector<Point2D<double, Quadrants2D::UpRight>>& list)
     : x(), b()
 {
     x.reserve(list.size());
     b.reserve(list.size());
-    for (const Vector2d& pt : list)
+    for (auto pt : list)
     {
-        x.push_back(pt.getX());
-        b.push_back(pt.getY());
+        x.push_back(pt.x());
+        b.push_back(pt.y());
         Complete();
     }
 }

@@ -42,7 +42,7 @@ namespace zawa_ch::StationaryOrbit::Mathematics
 	public:
 
 		///	@a Vector2d のリストからこのオブジェクトを構築します。
-		explicit NewtonCoef(const std::vector<Vector2d>& list);
+		explicit NewtonCoef(const std::vector<Point2D<double, Quadrants2D::UpRight>>& list);
 
 		///	xの値のリストとそれに対応する解のリストからこのオブジェクトを構築します。
 		NewtonCoef(const IMathematicFunction<double>& func, const std::vector<double> xlist);
