@@ -19,48 +19,47 @@
 #include "stationaryorbit/mathematics/compensatedfloat.hpp"
 #include "stationaryorbit/mathematics/newtoncoef.hpp"
 using namespace zawa_ch::StationaryOrbit::Mathematics;
-
 void NewtonCoef::Complete()
 {
-    if (x.size() != b.size()) throw InvalidOperationException("illegal-state");
-    for (size_t i = 0; i < b.size()-1; i++)
-    {
-        b.back() = (b.back() - b[i])/(x.back() - x[i]);
-    }
+	if (x.size() != b.size()) throw InvalidOperationException("illegal-state");
+	for (size_t i = 0; i < b.size()-1; i++)
+	{
+		b.back() = (b.back() - b[i])/(x.back() - x[i]);
+	}
 }
 
 NewtonCoef::NewtonCoef(const std::vector<Point2D<double, Quadrants2D::UpRight>>& list)
-    : x(), b()
+	: x(), b()
 {
-    x.reserve(list.size());
-    b.reserve(list.size());
-    for (auto pt : list)
-    {
-        x.push_back(pt.x());
-        b.push_back(pt.y());
-        Complete();
-    }
+	x.reserve(list.size());
+	b.reserve(list.size());
+	for (auto pt : list)
+	{
+		x.push_back(pt.x());
+		b.push_back(pt.y());
+		Complete();
+	}
 }
 
 NewtonCoef::NewtonCoef(const IMathematicFunction<double>& func, const std::vector<double> xlist)
-    : x(), b()
+	: x(), b()
 {
-    x.reserve(xlist.size());
-    b.reserve(xlist.size());
-    for (const double& ptx : xlist)
-    {
-        x.push_back(ptx);
-        b.push_back(func.Calc(ptx));
-        Complete();
-    }
+	x.reserve(xlist.size());
+	b.reserve(xlist.size());
+	for (const double& ptx : xlist)
+	{
+		x.push_back(ptx);
+		b.push_back(func.Calc(ptx));
+		Complete();
+	}
 }
 
 double NewtonCoef::Calc(const double& value) const
 {
-    CompensatedDouble result = CompensatedDouble(b.back());
-    for (size_t i = b.size() - 1; 0 < i; i--)
-    {
-        result = result * (value - x[i-1]) + b[i-1];
-    }
-    return double(result);
+	CompensatedDouble result = CompensatedDouble(b.back());
+	for (size_t i = b.size() - 1; 0 < i; i--)
+	{
+		result = result * (value - x[i-1]) + b[i-1];
+	}
+	return double(result);
 }
