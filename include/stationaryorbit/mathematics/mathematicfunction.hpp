@@ -27,7 +27,7 @@ namespace zawa_ch::StationaryOrbit::Mathematics
 	template<class T>
 	class IMathematicFunction
 	{
-		static_assert(Traits::IsNumericalType<T>, "テンプレート型 T は数値型である必要があります。");
+		static_assert(NumericalTypeTraits::is_numericaltype<T>, "テンプレート型 T は数値型である必要があります。");
 	public:
 		/// この関数に値を代入した解を取得します。
 		/// @param  value
@@ -41,7 +41,7 @@ namespace zawa_ch::StationaryOrbit::Mathematics
 	class MathematicFunction
 		: public IMathematicFunction<T>
 	{
-		static_assert(Traits::IsNumericalType<T>, "テンプレート型 T は数値型である必要があります。");
+		static_assert(NumericalTypeTraits::is_numericaltype<T>, "テンプレート型 T は数値型である必要があります。");
 	public:
 		///	@a T 型の値を受け取り、 @a T 型の値を返す数学的な関数の実体。
 		typedef std::function<T(T)> HandlerType;

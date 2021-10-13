@@ -29,7 +29,7 @@ namespace zawa_ch::StationaryOrbit::Mathematics
 	template<typename T, size_t N>
 	class PolynomialFunction : public IMathematicFunction<T>
 	{
-		static_assert(Traits::IsNumericalType<T>, "テンプレート型 T は数値型である必要があります。");
+		static_assert(NumericalTypeTraits::is_numericaltype<T>, "テンプレート型 T は数値型である必要があります。");
 	public:
 		typedef T ValueType;
 		typedef std::array<T, N> DataType;

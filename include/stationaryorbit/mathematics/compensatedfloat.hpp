@@ -1,5 +1,5 @@
 //	stationaryorbit/mathematics/compensatedfloat
-//	Copyright 2020 zawa-ch.
+//	Copyright 2020-2021 zawa-ch.
 //	GPLv3 (or later) license
 //
 //	This program is free software: you can redistribute it and/or modify
@@ -27,7 +27,7 @@ namespace zawa_ch::StationaryOrbit::Mathematics
 	template<class T>
 	struct CompensatedFloat final
 	{
-		static_assert(Traits::IsNumericalType<T>, "テンプレート引数 T は数値型である必要があります。");
+		static_assert(NumericalTypeTraits::is_numericaltype<Tp>, "テンプレート引数 Tp は数値型である必要があります。");
 		static_assert(!std::numeric_limits<T>::is_exact, "テンプレート引数 T が正確な値を示す型であってはなりません。");
 	public:
 		typedef T ValueType;
