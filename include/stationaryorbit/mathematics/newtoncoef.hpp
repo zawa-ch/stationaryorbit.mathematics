@@ -24,7 +24,6 @@
 #include "mathematicfunction.hpp"
 namespace zawa_ch::StationaryOrbit::Mathematics
 {
-
 	///	ニュートン補完による関数を表します。
 	class NewtonCoef
 		: public IMathematicFunction<double>
@@ -57,16 +56,15 @@ namespace zawa_ch::StationaryOrbit::Mathematics
 		///	補完係数のリストを取得します。
 		std::vector<double> getB() const { return b; }
 
-        /// この関数に値を代入した解を取得します。
-        ///
-        /// @param  value
-        /// 代入する値。
-        ///
-        /// @return
-        /// 計算を行い、得られた解が返ります。
+		/// この関数に値を代入した解を取得します。
+		///
+		/// @param  value
+		/// 代入する値。
+		///
+		/// @return
+		/// 計算を行い、得られた解が返ります。
 		double Calc(const double& value) const;
 		double operator()(const double& value) const { return Calc(value); }
-
 	};
 
 }
